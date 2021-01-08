@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xja.dao.UserMapper">
+    <sql id="columnFiled">uid,uname,usex</sql>
+    <resultMap id="myResult" type="edu.xja.pojo.MapUser">
+        <id property="mUid" column="uid" />
+        <id property="mUname" column="uname"/>
+        <id property="mUsex" column="usex" />
+    </resultMap>
+    <select id="selectAllUser" resultType="user">
+        select <include refid="columnFiled"></include> from user
+        where uname like concat('%',#{uname},'%')
+        and usex = #{usex}
+    </select>
+    <insert id="addUser" parameterType="user" keyProperty="uid" useGeneratedKeys="true">
+        insert into user (uname,usex) values(#{uName},#{uSex})
+    </insert>
+    <select id="selectuserMap" resultMap="myResult">
+        select <include refid="columnFiled"></include> from user
+    </select>
+    <select id="getById" resultType="edu.xja.entity.User">
+        select uid,uname,usex from user where uid=#{id}
+    </select>
+
+</mapper>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.xja.dao.IdCardMapper">
+
+    <sql id="idcardField">id,code</sql>
+    <select id="selectCodeById"  resultType= "idcard">
+        select <include refid="idcardField"></include> from idcard where id=#{id}
+    </select>
+</mapper>
